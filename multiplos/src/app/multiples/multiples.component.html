@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Multiples</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-text>
+    <h3>
+      Los múltiplos de 
+      <ion-text color="success">3 son verdes</ion-text>, 
+      los de <ion-text color="danger">5 son rojos</ion-text> y 
+      los de <ion-text color="primary">7 son azules</ion-text>.
+    </h3>
+  </ion-text>
+  
+  <ion-item>
+    <ion-label position="floating">Enter a Number</ion-label>
+    <ion-input type="number" [(ngModel)]="number"></ion-input>
+  </ion-item>
+  <ion-button expand="full" (click)="findMultiples()">Find Multiples</ion-button>
+  <ion-list>
+    <ion-item *ngFor="let multiple of multiples" [style.color]="multiple.color">
+      {{ multiple.value }}
+    </ion-item>
+  </ion-list>
+</ion-content>
