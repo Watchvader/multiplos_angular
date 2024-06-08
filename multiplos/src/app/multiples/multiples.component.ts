@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MultiplesService } from '../services/multi.service';
+import { Result } from '../interface/result.interface';
 
 @Component({
   selector: 'app-multiples',
@@ -8,6 +10,8 @@ import { Component } from '@angular/core';
 export class MultiplesComponent {
   number: number = 0;
   multiples: { value: number, color: string }[] = [];
+
+  constructor(private multiplesService:MultiplesService){}
 
   findMultiples() {
     this.multiples = [];
@@ -21,6 +25,15 @@ export class MultiplesComponent {
 
       this.multiples.push({ value: i, color });
     }
+    this.saveResult();
+  }
+  async saveResult(){
+    const multiplesValues = this.multiples.map(multiples => multiples.value);
+    const result: Result ={
+      peticion: this.number,
+      result:multiplesValues
+    };
+    await this.multiplesService.saveData(result);
   }
 }
 
